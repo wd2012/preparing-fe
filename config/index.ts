@@ -1,5 +1,6 @@
 import { defineConfig, type UserConfigExport } from '@tarojs/cli'
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
+import path from 'path'
 import devConfig from './dev'
 import prodConfig from './prod'
 
@@ -15,9 +16,12 @@ export default defineConfig(async (merge, { command, mode }) => {
       375: 2,
       828: 1.81 / 2
     },
+    alias: {
+      '@': path.resolve(__dirname, '../src'),
+    },
     sourceRoot: 'src',
     outputRoot: 'dist',
-    plugins: [],
+    plugins: ['@tarojs/plugin-http'],
     defineConstants: {
     },
     copy: {

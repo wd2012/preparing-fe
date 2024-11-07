@@ -25,6 +25,7 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["./src", "./types", "./config"],
-  "compileOnSave": false
+  // "include": ["./src", "./types", "./config"],
+  "exclude": ["node_modules", "test", "dist", "**/*spec.ts"]
+  // "compileOnSave": false
 }
