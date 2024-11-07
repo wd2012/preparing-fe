@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { View, Text } from '@tarojs/components';
 import { useLoad } from '@tarojs/taro';
 import { Button } from '@taroify/core';
@@ -6,19 +7,26 @@ import { getDictionarySearchResult } from '@/service/dictionary';
 
 import './index.less';
 
-export default function Dictionary() {
+const Dictionary: React.FC = () => {
+  const [result, setResult] = useState<any>();
   useLoad(() => {
     console.log('Page loaded.');
   });
 
   const handleClick = async () => {
-    await getDictionarySearchResult();
+    const data = await getDictionarySearchResult();
+    console.log('data-----', data);
+    setResult(data);
   };
 
   return (
     <View className="index">
-      <Button onClick={handleClick}>查询</Button>
-      <Text>查词</Text>
+      <Button color="primary" onClick={handleClick}>
+        查询
+      </Button>
+      <Text>{result}</Text>
     </View>
   );
-}
+};
+
+export default Dictionary;
